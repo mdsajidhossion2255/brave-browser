@@ -19,8 +19,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Build with Gradle
-        run: ./gradlew assembleDebug
+      - name: Build with Gradle in app folder
+        run: |
+          cd app
+          gradle init --type basic --automation-language groovy --dsl groovy --test-framework none --project-name "app" --non-interactive || true
+          gradle assembleDebug
